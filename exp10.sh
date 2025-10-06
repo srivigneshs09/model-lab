@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------
-# Experiment 7: Storage Virtualization using LVM (Ubuntu)
+# Experiment 10: Storage Virtualization using LVM (Ubuntu)
 # Author: Sri Vignesh S
 # Date: $(date +"%d-%m-%Y")
 # ------------------------------------------------------------
