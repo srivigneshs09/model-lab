@@ -35,3 +35,27 @@ brctl show
 ip -br a
 ip route
 echo "Linux bridge $BR configured with $IPCIDR via $GW"
+
+
+---------
+# OPENV SWITCH COMMANDS
+
+sudo apt-get update
+sudo apt-get install -y openvswitch-switch
+sudo systemctl enable --now openvswitch-switch
+
+# Create OVS bridge and add physical NIC
+ovs-vsctl add-br ovs-br0
+ovs-vsctl add-port ovs-br0 enp0s3
+
+# Move IP to OVS bridge
+ip addr flush dev enp0s3
+ip addr add 10.0.2.15/24 dev ovs-br0
+ip link set enp0s3 up
+ip link set ovs-br0 up
+ip route add default via 10.0.2.2
+
+# Verify
+ovs-vsctl show
+ip a
+route -n
